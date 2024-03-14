@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hello, World!</h1>
+    <h2># of Years of Work Experience:</h2>
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
+        {% for number in numbers %}
+            <input type="radio" id="{{ number }}" name="years" value="{{ number }}">
+            <label for="{{ number }}">{{ number }}</label><br>
+        {% endfor %}
+        <div>
+            <label for="gmat">GMAT Score:</label>
+            <input type="text" id="gmat" name="gmat">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+{% endblock %}
